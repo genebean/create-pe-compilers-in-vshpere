@@ -1,8 +1,8 @@
 plan create_pe_compilers::configure_compilers(
   Array[String[1]] $vm_names,
-  String[1] $domain = 'ops.puppetlabs.net',
-  String[1] $master = 'pe-mom1-prod.ops.puppetlabs.net',
-  String[1] $dns_alt_names = 'puppet,puppet.ops.puppetlabs.net,puppet.puppetlabs.net,pemaster.puppetlabs.net,pemaster.ops.puppetlabs.net,puppet-next.ops.puppetlabs.net,puppet-next.puppetlabs.net',
+  String[1] $domain,
+  String[1] $master,
+  Array[String[1]] $dns_alt_names,
 ){
   $_command_options = {
     '_catch_errors' => false,
@@ -24,7 +24,7 @@ plan create_pe_compilers::configure_compilers(
     run_command('sudo yum remove -y puppet-agent; rm -f /etc/puppetlabs/puppet/puppet.conf*', $_target, $_command_options)
 
     # do curl|bash install
-    $_all_dns_alt_names = "${vm_name},${dns_alt_names}"
+    $_all_dns_alt_names = "${vm_name},${dns_alt_names.join(',')}"
     $cmd = "curl -k https://${master}:8140/packages/current/install.bash | sudo bash -s -- main:dns_alt_names=${_all_dns_alt_names} --puppet-service-ensure stopped --puppet-service-enable false"
     run_command($cmd, $_target, $_command_options)
 

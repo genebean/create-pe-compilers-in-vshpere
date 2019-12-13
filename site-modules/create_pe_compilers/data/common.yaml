@@ -1,0 +1,30 @@
+---
+# A plan-of-plans is provided that runs both plans whose params are below
+create_pe_compilers::run_plans::vm_names:
+  - 'pe-compiler-prod-1'
+  - 'pe-compiler-prod-2'
+  - 'pe-compiler-prod-3'
+  - 'pe-compiler-prod-4'
+  - 'pe-compiler-prod-5'
+  - 'pe-compiler-prod-7'
+
+# Step 1 is to create things in vCenter:
+create_pe_compilers::create_in_vcenter::vm_folder: '/vcenter-prod1.ops.puppetlabs.net/opdx1/ops/production'
+create_pe_compilers::create_in_vcenter::vm_names: $vm_names,
+create_pe_compilers::create_in_vcenter::target_data_store: 'tintri-opdx-1-puppet-infrastructure'
+create_pe_compilers::create_in_vcenter::source: '/vcenter-prod1.ops.puppetlabs.net/opdx1/templates/ops/centos-7.6.1810-with-puppet-0.0.1'
+create_pe_compilers::create_in_vcenter::customization_spec: 'Linux Customization'
+create_pe_compilers::create_in_vcenter::annotation: 'PE Compiler deployed 25 Sept 2019'
+create_pe_compilers::create_in_vcenter::resource_pool: '/puppet1'
+
+# Step 2 is to configure the new VM's:
+create_pe_compilers::configure_compilers::domain: 'ops.puppetlabs.net'
+create_pe_compilers::configure_compilers::master: 'pe-mom1-prod.ops.puppetlabs.net'
+create_pe_compilers::configure_compilers::dns_alt_names:
+  - 'puppet'
+  - 'puppet.ops.puppetlabs.net'
+  - 'puppet.puppetlabs.net'
+  - 'pemaster.puppetlabs.net'
+  - 'pemaster.ops.puppetlabs.net'
+  - 'puppet-next.ops.puppetlabs.net'
+  - 'puppet-next.puppetlabs.net'
