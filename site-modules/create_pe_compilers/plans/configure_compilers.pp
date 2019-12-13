@@ -1,10 +1,10 @@
 plan create_pe_compilers::configure_compilers(
-  Array[String[1]] $vm_names,
-  String[1] $domain,
-  String[1] $master,
   Array[String[1]] $dns_alt_names,
-  String[1] $curl_install_fqdn,
-  String[1] $curl_install_ip,
+  Array[String[1]] $vm_names,
+  Stdlib::Fqdn $curl_install_fqdn,
+  Stdlib::Fqdn $domain,
+  Stdlib::IP::Address $curl_install_ip,
+  String[1] $master,
 ){
   $_command_options = {
     '_catch_errors' => false,
