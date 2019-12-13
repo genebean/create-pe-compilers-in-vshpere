@@ -18,6 +18,8 @@ create_pe_compilers::create_in_vcenter::annotation: 'PE Compiler deployed 25 Sep
 create_pe_compilers::create_in_vcenter::resource_pool: '/puppet1'
 
 # Step 2 is to configure the new VM's:
+create_pe_compilers::configure_compilers::curl_install_fqdn: 'puppet.ops.puppetlabs.net'
+create_pe_compilers::configure_compilers::curl_install_ip: '10.32.22.222'
 create_pe_compilers::configure_compilers::domain: 'ops.puppetlabs.net'
 create_pe_compilers::configure_compilers::master: 'pe-mom1-prod.ops.puppetlabs.net'
 create_pe_compilers::configure_compilers::dns_alt_names:
