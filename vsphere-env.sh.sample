@@ -1,0 +1,17 @@
+# Required Settings:
+export VCENTER_SERVER='your-host'
+export VCENTER_USER='your-username'
+export VCENTER_PASSWORD='your-password'
+
+# Optional Settings:
+
+export VCENTER_DATACENTER='dc1'
+
+# Whether to ignore SSL certificate errors. Defaults to true.
+export VCENTER_INSECURE='false'
+
+# Whether to use SSL. Defaults to true.
+# export VCENTER_SSL='true'
+
+# Sets vSphere server port to connect to. Defaults to 443(SSL) or 80(non-SSL).
+# export VCENTER_PORT='your-port'
